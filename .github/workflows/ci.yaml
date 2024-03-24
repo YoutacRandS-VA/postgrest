@@ -122,7 +122,7 @@ jobs:
       - name: Check static executable
         run: postgrest-check-static result/bin/postgrest
       - name: Save built executable as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: postgrest-linux-static-x64
           path: result/bin/postgrest
@@ -131,7 +131,7 @@ jobs:
       - name: Build Docker image
         run: nix-build -A docker.image --out-link postgrest-docker.tar.gz
       - name: Save built Docker image as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: postgrest-docker-x64
           path: postgrest-docker.tar.gz
@@ -220,7 +220,7 @@ jobs:
       - name: Build with Stack
         run: stack build --local-bin-path result --copy-bins
       - name: Save built executable as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact }}
           path: |
@@ -240,7 +240,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: .github/get_cirrusci_freebsd
       - name: Save executable as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: postgrest-freebsd-x64
           path: postgrest
@@ -337,7 +337,7 @@ jobs:
       - name: Extract downloaded binaries
         run: tar -xvf result.tar.xz && rm result.tar.xz
       - name: Save aarch64 executable as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: postgrest-ubuntu-aarch64
           path: result/postgrest
@@ -398,7 +398,7 @@ jobs:
           echo "Relevant extract from CHANGELOG.md:"
           cat CHANGES.md
       - name: Save CHANGES.md as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-changes
           path: CHANGES.md
@@ -447,7 +447,7 @@ jobs:
             artifacts/postgrest-windows-x64/postgrest.exe
 
       - name: Save release bundle
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-bundle
           path: release-bundle
